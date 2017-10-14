@@ -4,10 +4,19 @@ import './App.css';
 import {apiData} from './data'
 import {FirstComponent} from './FirstComponent';
 
-
+const todaysDate = "2017-10-14";
 class App extends React.Component {
-  render() {
-    return (
+  // colorDate(d) {
+  //   if (todaysDate < d.toString()) {
+  //     const colorStatus = 'background-color: green'
+  //   } else {
+  //     const colorStatus = 'background-color: red'
+  //   }
+  // }
+    render() {
+      // console.log(this.props)
+      return (
+
 
       <div className="App">
 

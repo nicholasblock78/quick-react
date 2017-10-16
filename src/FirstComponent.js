@@ -50,6 +50,9 @@ export class FirstComponent extends React.Component {
         <div>
         <h3>Todays date: <Time /></h3>
         </div>
+        <div className="statuses">
+        <div className="critical">
+        <h3>Critical</h3>
             {oldImports.map(function(value) {
               return <ul key={value.merchant_group_id}>
                 <li style={{backgroundColor: 'rgba(255,0,0,0.5)'}}>
@@ -60,6 +63,9 @@ export class FirstComponent extends React.Component {
                 </li>
               </ul>
             })}
+        </div>
+        <div className="needs-attention">
+        <h3>Needs Attention</h3>
             {staleImports.map(function(value) {
               return <ul key={value.merchant_group_id}>
                 <li style={{backgroundColor: 'rgba(255,255,0,0.8)'}}>
@@ -70,6 +76,9 @@ export class FirstComponent extends React.Component {
                 </li>
               </ul>
             })}
+            </div>
+            <div className="healthy">
+            <h3>Healthy</h3>
             {okImports.map(function(value) {
               return <ul key={value.merchant_group_id}>
                 <li style={{backgroundColor: 'rgba(0,255,0,0.5)'}}>
@@ -80,6 +89,8 @@ export class FirstComponent extends React.Component {
                 </li>
               </ul>
             })}
+            </div>
+            </div>
       </div>
     )
   }

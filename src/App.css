@@ -7,13 +7,17 @@ body {
   text-align: center;
 }
 
+div.statuses {
+  display: flex;
+}
+
 .data {
   text-align: left;
-  width: 500px;
 }
 
 .data ul {
   padding: 0;
+  width: 500px;
 }
 
 .data ul li {

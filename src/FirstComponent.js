@@ -1,47 +1,85 @@
 import React from 'react'
-// import Time from 'react-time'
-// import ReactDOM from 'react-dom'
-// import {apiData} from './data'
-// console.log(dataAPI)
-// const dataAPI = fetch("http://readservices-b2c-etl.powerreviews.com/status/imports.json")
-// console.log(apiData[0])
-// {console.log(this.props.data[0].merchant_group_id)}
-const todaysDate = "2017-10-14";
+import Time from './Time'
+
 export class FirstComponent extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {color: 'green'};
+    this.state = {currentDate: new Date(Date.now()).toString(),oldColor: 'rgba(255,0,0,0.5)',staleColor: 'rgba(100,5,5,0.5)',okColor: 'rgba(0,255,0,0.5)'};
+    this.formatTime = this.formatTime.bind(this);
   }
 
-  // colorDate(d) {
-  //   if (todaysDate < d.toString()) {
-  //     const colorStatus = 'background-color: green'
-  //   } else {
-  //     const colorStatus = 'background-color: red'
-  //   }
-  // }
+  formatTime() {
+    console.log()
+  }
 
+  componentWillMount() {
 
+  }
+  componentDidMount() {
+    // fetch()
+  }
   render() {
-    const styling = {
+    const oldImports = [];
+    const staleImports = [];
+    const okImports = [];
+
+    this.props.data.map(function(value) {
+      var time = (Date.now() - Date.parse(new Date(value.time))) / (1000*60*60*24)
+      if ( time > 7) {
+        oldImports.push(value)
+      } else if ( time > 3) {
+        staleImports.push(value)
+      } else {
+        console.log('hello')
+        okImports.push(value)
+      }
+
+    })
+    console.log(oldImports)
+    const liStyling = {
       backgroundColor: this.state.color
-    };
-    console.log(this.props.data[0])
+    }
+
+
+
+    console.log(this.state.currentDate.substring(0,5))
+
     return (
       <div>
         <div>
-        <h1>Todays date</h1>
-        <p>2017-10-14</p>
+        <h3>Todays date: <Time /></h3>
         </div>
-            {this.props.data.map(function(value) {
+            {oldImports.map(function(value) {
               return <ul key={value.merchant_group_id}>
-                <li>Merchant group: {value.merchant_group_id}</li>
+                <li style={{backgroundColor: 'rgba(255,0,0,0.5)'}}>
+                  <strong>MG:</strong> {value.merchant_group_id}
+                  <br />
+                  <strong>Last Updated:</strong> {new Date(value.time).toString().substring(4,15)}
 
-                <li style={styling}>Last updated: {(value.time.substring(0,10))}</li>
+                </li>
               </ul>
             })}
-        <h1>hello world</h1>
+            {staleImports.map(function(value) {
+              return <ul key={value.merchant_group_id}>
+                <li style={{backgroundColor: 'rgba(255,255,0,0.8)'}}>
+                  <strong>MG:</strong> {value.merchant_group_id}
+                  <br />
+                  <strong>Last Updated:</strong> {new Date(value.time).toString().substring(4,15)}
+
+                </li>
+              </ul>
+            })}
+            {okImports.map(function(value) {
+              return <ul key={value.merchant_group_id}>
+                <li style={{backgroundColor: 'rgba(0,255,0,0.5)'}}>
+                  <strong>MG:</strong> {value.merchant_group_id}
+                  <br />
+                  <strong>Last Updated:</strong> {new Date(value.time).toString().substring(4,15)}
+
+                </li>
+              </ul>
+            })}
       </div>
     )
   }

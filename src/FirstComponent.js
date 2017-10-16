@@ -17,7 +17,21 @@ export class FirstComponent extends React.Component {
 
   }
   componentDidMount() {
-    // fetch()
+    var url = "http://readservices-b2c-etl.powerreviews.com/status/imports.json";
+    var myHeaders = new Headers();
+    myHeaders.set("Content-Type", "text/html")
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+    var myInit = { method: 'GET',
+               headers: myHeaders,
+               mode: 'no-cors',
+               cache: 'default' };
+
+    fetch("http://readservices-b2c-etl.powerreviews.com/status/imports.json",myInit)
+    .then(function(response) {
+      console.log(response)
+      console.log(response.json)
+    })
+
   }
   render() {
     const oldImports = [];

@@ -17,16 +17,17 @@ export class FirstComponent extends React.Component {
 
   }
   componentDidMount() {
+    var proxy = 'http://cors-anywhere.herokuapp.com/readservices-b2c-etl.powerreviews.com/status/imports.json';
     var url = "http://readservices-b2c-etl.powerreviews.com/status/imports.json";
     var myHeaders = new Headers();
     myHeaders.set("Content-Type", "text/html")
     myHeaders.append("Access-Control-Allow-Origin", "*");
     var myInit = { method: 'GET',
                headers: myHeaders,
-               mode: 'no-cors',
+               mode: 'cors',
                cache: 'default' };
 
-    fetch("http://readservices-b2c-etl.powerreviews.com/status/imports.json",myInit)
+    fetch(proxy,myInit)
     .then(function(response) {
       console.log(response)
       console.log(response.json)

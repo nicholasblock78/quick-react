@@ -16,24 +16,26 @@ export class FirstComponent extends React.Component {
   componentWillMount() {
 
   }
-  componentDidMount() {
-    var proxy = 'http://cors-anywhere.herokuapp.com/readservices-b2c-etl.powerreviews.com/status/imports.json';
-    var url = "http://readservices-b2c-etl.powerreviews.com/status/imports.json";
-    var myHeaders = new Headers();
-    myHeaders.set("Content-Type", "text/html")
-    myHeaders.append("Access-Control-Allow-Origin", "*");
-    var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
-
-    fetch(proxy,myInit)
-    .then(function(response) {
-      console.log(response)
-      console.log(response.json)
-    })
-
-  }
+  // componentDidMount() {
+  //   var url = "http://readservices-b2c-etl.powerreviews.com/status/imports.json";
+  //   var myHeaders = new Headers();
+  //   myHeaders.set("Content-Type", "json")
+  //   myHeaders.append("Access-Control-Allow-Origin", "*");
+  //   var myInit = { method: 'GET',
+  //              headers: myHeaders,
+  //              // credentials: 'omit',
+  //              // mode: '*',
+  //              cache: 'default' };
+  //
+  //   fetch(url,myInit)
+  //   .then((resp) => resp.json()) // Transform the data into json
+  // .then(function(data) {
+  //   console.log(data)
+  //   // Create and append the li's to the ul
+  //   })
+  //
+  //
+  // }
   render() {
     const oldImports = [];
     const staleImports = [];
@@ -51,14 +53,14 @@ export class FirstComponent extends React.Component {
       }
 
     })
-    console.log(oldImports)
+    // console.log(oldImports)
     const liStyling = {
       backgroundColor: this.state.color
     }
 
 
 
-    console.log(this.state.currentDate.substring(0,5))
+    // console.log(this.state.currentDate.substring(0,5))
 
     return (
       <div>
